@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- desde https://www.chartjs.org/docs/latest/getting-started/ -->
+
+    <h1>Grafico</h1>
+    <div>
+        <canvas id="myChart"></canvas>
+        <img id="cargando" src="/loading-icegif-1.gif" />
+    </div>
+
+    <script>
+    
+
+        function reqListener() {
+            var dataAjax = JSON.parse(this.responseText);
+            console.log(dataAjax);
+            document.getElementById("cargando").style.display = "none";
+
+            const labels = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+            ];
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: dataAjax,
+                }]
+            };
+            const config = {
+                type: 'line',
+                data,
+                options: {}
+            };
+            // === include 'setup' then 'config' above ===
+
+            var myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+
+        }
+
+        function reqError(err) {
+            console.log('Fetch Error :-S', err);
+        }
+
+        var oReq = new XMLHttpRequest(); // <--- ajax o usar fetch
+        
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', 'http://localhost:1245/CompraAPI/ListarAgrupado2/?token=ABC123456', true);
+        oReq.setRequestHeader("token", "ABC123456"); // PARA VALIDAR.
+        oReq.send();
+
+
+
+    </script>
+
+</body>
+</html>

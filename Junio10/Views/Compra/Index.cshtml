@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+}
+<h1>Esta es la pagina del controlador</h1>
+<div> 
+    <ul>
+        @foreach (Junio10.Models.ClaseResultadoAgrupacion fila in ViewBag.grupos)
+        {
+            <li>@fila.NumMes = @fila.Total</li>
+        }
+    </ul>
+</div>

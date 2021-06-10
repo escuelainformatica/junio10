@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>pagina web</h1>
+
+    <!-- desde https://developers.google.com/web/updates/2015/03/introduction-to-fetch -->
+    <script>
+        function reqListener() {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+          //  alert('datos cargados');
+        }
+
+        function reqError(err) {
+            console.log('Fetch Error :-S', err);
+        }
+
+        var oReq = new XMLHttpRequest();
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', 'http://localhost:1245/CompraAPI/ListarAgrupado', true);
+        oReq.send();
+
+        // alert('hola');
+
+    </script>
+</body>
+</html>

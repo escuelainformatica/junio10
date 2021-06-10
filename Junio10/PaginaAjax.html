@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>pagina con Ajax</h1>
+    <div id="contenido">
+        <img src="/loading-icegif-1.gif"/>
+    </div>
+    <h1>pagina con iframe</h1>
+    <iframe src="http://localhost:1245/Compra" width="100%" height="400"></iframe>
+
+
+    <script>
+        function reqListener() {
+            var dataAjax = this.responseText;
+            document.getElementById("contenido").innerHTML = dataAjax;
+        }
+
+        function reqError(err) {
+            console.log('Fetch Error :-S', err);
+        }
+
+        var oReq = new XMLHttpRequest();
+
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', 'http://localhost:1245/Compra', true);
+        // oReq.setRequestHeader("clave", "abc123");
+        oReq.send();
+    </script>
+</body>
+</html>
