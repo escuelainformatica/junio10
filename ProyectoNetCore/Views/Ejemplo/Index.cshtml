@@ -1,0 +1,14 @@
+﻿@using ProyectoNetCore.Models
+
+@{
+}
+
+<h1>hola mundo</h1>
+
+<ul>
+	@foreach(Compra compra in ViewBag.listado)
+	{
+		<li>@compra.Monto = @compra.NumeroMes</li>
+	}
+
+</ul>
